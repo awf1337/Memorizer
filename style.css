@@ -1,0 +1,328 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+	--cl-primary : #43288A;
+	--cl-secondary : #FFE900;
+	--cl-grid: #02d0a7;
+	--cl-white : #FFF;
+	--cl-primary-hover : #CBB9FC;
+
+	--shadow-black : rgba(0, 0, 0, 0.75);
+	--shadow-white : rgba(255, 255, 255, 0.75);
+}
+
+body {
+  margin: 0;
+  background: var(--cl-primary);
+  color: var(--cl-white);
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none; 
+}
+
+/*=========
+   Layout
+==========*/
+
+.grid {
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  position: relative;
+  transition: all .4s linear;
+  transform-style: preserve-3d;
+  margin: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.card,
+.back,
+.front {
+  height: 100px;
+  width: 100px;
+  border: 0;
+}
+
+.back,
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front {
+  z-index: 2;
+  background: transparent no-repeat center center / contain;
+  background-image: url('./img/memeLogo.png');
+  border-radius: 5px;
+}
+
+.back {
+  transform: rotateY(180deg);
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.selected {
+  transform: rotateY(180deg);
+}
+
+.match .front {
+  background: transparent !important;
+}
+
+/* Single player and Multi player Stats render */
+.singlePlayerStats,
+.multiPlayerStats {
+	max-width: 500px;
+}
+
+.cardStats p:first-child {
+	font-size: 1.3rem;
+	font-weight: bold;
+	letter-spacing: .1em;
+}
+
+.cardStats p:last-child {
+	font-size: 1.2rem;
+	letter-spacing: .07em;
+}
+
+#firstPlayerMoves,
+#firstPlayerPoints,
+#secondPlayerPoints {
+	color: var(--cl-secondary);
+	font-weight: bold;
+}
+
+/* Buttons generals */
+.btn {
+	width: 200px;
+	padding: .70em 0;
+	color: var(--cl-white);
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 1rem;
+	letter-spacing: .1em;
+	-webkit-box-shadow: 0px 0px 13px 0px var(--shadow-black);
+	box-shadow: 0px 0px 13px 0px var(--shadow-black);
+}
+
+.btn:hover {
+	color: var(--cl-secondary);
+}
+
+.btnSymbols {
+	width: unset;
+	padding: .5em 1em;
+	font-size: 1rem;
+}
+
+.btnFixedWidth {
+	width: 100px;
+}
+
+/*Inputs */
+#firstPlayerInput,
+#secondPlayerInput {
+	max-width: 400px;
+	padding: 5px;
+	background-color: transparent;
+	border: 2px solid var(--cl-secondary);
+	border-radius: 20px;
+	text-align: center;
+	color: var(--cl-white);
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+#firstPlayerInput::placeholder,
+#secondPlayerInput::placeholder {
+	color: var(--cl-white);
+	opacity: 50%;
+	background-color: transparent;
+	margin-top: 0;
+}
+
+/*Card Stats*/
+.cardStats {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	padding: 1em;
+	-webkit-box-shadow: 0px 0px 13px 0px var(--shadow-black);
+	box-shadow: 0px 0px 13px 0px var(--shadow-black);
+}
+
+.menuGamePosition {
+	height: 300px;
+}
+
+/* Toggle */
+.checkbox {
+	opacity: 0;
+	position: absolute;
+}
+
+.label {
+	width: 45px;
+	height: 21px;
+	background-color: var(--cl-primary-hover);
+	display: flex;
+	border-radius:50px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+	position: relative;
+	transform: scale(1.5);
+}
+
+.ball {
+	width: 17px;
+	height: 17px;
+	background-color: var(--cl-primary);
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	border-radius: 50%;
+	transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked + .label .ball{
+	transform: translateX(24px);
+}
+
+.fa-moon {
+	color: pink;
+}
+
+.fa-ghost {
+	height: auto;
+	width: 13px;
+}
+
+.abosoluteToggle {
+	position: absolute;
+	top: 5%;
+	right: 5%;
+}
+
+/* Background Video Halloween */
+#background-video {
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+  }
+
+  /*volume*/
+ .fixedVolume {
+	position: fixed;
+	top:30px;
+	left:30px;
+	cursor: pointer;
+ }
+
+ #volume {
+	width: 40px;
+	height: auto;
+ }
+
+ /*Game Title */
+ .lineTitle {
+	position: relative;
+ }
+
+ .lineTitle h1 {
+	margin: 0;
+ }
+
+ .lineTitle span {
+	color: var(--cl-secondary);
+	text-shadow: 2px 2px var(--cl-primary);
+ }
+
+ .lineTitle::after {
+	content: '';
+	position: absolute;
+	width: 70%;
+	height: 7px;
+	background-color: var(--cl-primary-hover);
+	bottom: 5px;
+	left: -20px;
+	z-index: -1;
+ }
+
+/*BubbleUpEffects*/
+.bubbleEffect {
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.bubbleEffect span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: var(--cl-primary-hover);
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+.bubbleEffect:hover {
+    color: var(--cl-white);
+}
+
+.bubbleEffect:hover span {
+    transform: translateY(-60%) scale(2);
+}
+
+.bubbleEffect span:nth-child(1) {
+    --n: 1;
+}
+
+.bubbleEffect span:nth-child(2) {
+    --n: 2;
+}
+
+.bubbleEffect span:nth-child(3) {
+    --n: 3;
+}
+
+.bubbleEffect span:nth-child(4) {
+    --n: 4;
+}
+
+.gameTitle {
+	backdrop-filter: blur(15px);
+	width: fit-content;
+	padding: 20px;
+	border-radius: 15px;
+}
