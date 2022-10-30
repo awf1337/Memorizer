@@ -74,6 +74,8 @@ const gridDimension = (gridDimension) => {
   // slice the array with a given grid dimension
   let newGridDimensioned = gameGrid.slice(-gridDimension).concat(gameGrid.slice(-gridDimension));
 
+  newGridDimensioned.sort(()=> 0.5 - Math.random());
+
   // Creat cards
   newGridDimensioned.forEach(item => {
     const { name, img } = item;
